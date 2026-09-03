@@ -44,11 +44,13 @@ The portable executable will be created as `dist\RAEV-Shield.exe`. If Inno Setup
 
 ## Roadmap
 
-1. Signed installer and automatic official Tor component setup.
-2. Per-application compatibility tests and guided SOCKS configuration.
+Every version must improve privacy, ease of use, and visual quality together. See [ROADMAP.md](ROADMAP.md) for the release plan and quality gates.
+
+1. Truthful IP, DNS, IPv4/IPv6, and bypass diagnostics.
+2. Windows firewall kill switch with safe recovery.
 3. Transparent routing through an audited TUN/WFP layer.
-4. DNS, IPv6, WebRTC, and fail-closed leak test suite.
-5. Disposable application profiles and download quarantine.
+4. Disposable application profiles and download quarantine.
+5. Signed, reproducible releases with automatic updates.
 
 ## Responsible use
 
