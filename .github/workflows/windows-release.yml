@@ -1,0 +1,38 @@
+name: Build Windows EXE
+
+on:
+  workflow_dispatch:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: python -m pip install -r requirements-dev.txt
+      - run: python -m pytest
+      - name: Build portable EXE
+        run: pyinstaller --noconfirm --clean --onefile --windowed --collect-all customtkinter --name "RAEV-Shield" --paths src src/raev_shield/__main__.py
+      - name: Build friendly installer
+        run: iscc installer.iss
+      - uses: actions/upload-artifact@v4
+        with:
+          name: RAEV-Shield-Windows
+          path: |
+            dist/RAEV-Shield.exe
+            installer-output/RAEV-Shield-Setup.exe
+      - name: Publish tagged release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            dist/RAEV-Shield.exe
+            installer-output/RAEV-Shield-Setup.exe
