@@ -1,0 +1,15 @@
+[project]
+name = "raev-shield"
+version = "0.1.0"
+description = "Windows privacy gateway for routing compatible applications through Tor"
+requires-python = ">=3.11"
+dependencies = [
+  "customtkinter==5.2.2",
+  "requests[socks]==2.32.5",
+  "platformdirs==4.4.0",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+
